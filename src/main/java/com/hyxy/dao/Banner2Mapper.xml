@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyxy.dao.Banner2Mapper" >
+  <resultMap id="BaseResultMap" type="com.hyxy.entity.Banner2" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="imgName" property="imgname" jdbcType="VARCHAR" />
+    <result column="order1" property="order1" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="start1" property="start1" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from banner2
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hyxy.entity.Banner2" >
+    insert into banner2 (id, imgName, order1, 
+      title, start1)
+    values (#{id,jdbcType=INTEGER}, #{imgname,jdbcType=VARCHAR}, #{order1,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{start1,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hyxy.entity.Banner2" >
+    update banner2
+    set imgName = #{imgname,jdbcType=VARCHAR},
+      order1 = #{order1,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      start1 = #{start1,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, imgName, order1, title, start1
+    from banner2
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, imgName, order1, title, start1
+    from banner2 limit ${begin},${number}
+  </select>
+  
+  <select id="selectCount" resultType="int">
+  select count(*) count from banner2
+  </select>
+  
+</mapper>
